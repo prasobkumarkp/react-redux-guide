@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-      <Person name={'Prasob'} age={'29'} />
-      <Person name={'Prasob'} age={'29'} >My hobby is codding...!</Person>
-    </div>
-  );
+class App extends Component {
 
+  state = {
+    persons: [
+      { name: 'Max', age: 228 },
+      { name: 'Stephanie', age: 26 },
+      { name: 'Manu', age: 29 }
+    ]
+  }
+
+  switchNameHandler = () => {
+    this.setState({ persons: [{ name: 'Max', age: 228 }] })
+    // this will merge with the state, not overwriting the state.
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello</h1>
+        <button onClick={this.switchNameHandler}>Switch names</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+      </div>
+    );
+  }
   // return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Hello'))
 }
 
